@@ -223,6 +223,9 @@
     <ClCompile Include="WorkshopItem.cpp">
       <Filter>WorkshopItems</Filter>
     </ClCompile>
+    <ClCompile Include="RebootandRepair.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -372,6 +375,9 @@
     </ClInclude>
     <ClInclude Include="WorkshopItem.h">
       <Filter>WorkshopItems</Filter>
+    </ClInclude>
+    <ClInclude Include="RebootandRepair.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

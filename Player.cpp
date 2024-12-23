@@ -194,3 +194,9 @@ void Player::AppendPlayerInfo(string &playersInfo) const
 	}
 	playersInfo += to_string(health) + ")";
 }
+void Player::shoot(Grid *pGrid)
+{
+	Player *target = pGrid->GetCurrentPlayer();
+	if (target)
+		target->SetHealth(GetHealth() - 1);
+}
