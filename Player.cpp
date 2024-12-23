@@ -299,10 +299,14 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		}
 		pGrid->UpdatePlayerCell(this, currentCellPos);
 
+		pCell->GetGameObject()->Apply(pGrid, this);
+		if (pGrid->GetEndGame())
+		{
+			return;
+		}
 		pGrid->GetOutput()->PrintMessage("Click anywhere to execute the next command");
 		pGrid->GetInput()->GetCellClicked();
 	}
-	pCell->GetGameObject()->Apply(pGrid, this);
 }
 
 void Player::AppendPlayerInfo(string &playersInfo) const
