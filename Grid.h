@@ -25,13 +25,11 @@ class Grid
 	int currPlayerNumber;				// The player number that has the turn to play
 										// currPlayerNumber is: from 0 to MaxPlayerCount - 1
 	int numAntennas;					// Number of antennas in the grid
+	int numFlag;						// Number of antennas in the grid
 
 	GameObject *Clipboard; // This is used in copy/cut/paste game objects (should be set in copy/cut and got in paste)
 
 	bool endGame; // A boolean indicating if the Game is ended or not (a player reaches the flag cell or not)
-
-	int numFlag;
-	int numAntennas;
 
 public:
 	Grid(Input *pIn, Output *pOut); // Gives the Grid a Pointer to the Output Object and the Input Object

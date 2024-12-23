@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "Player.h"
+
 class RotatingGear : public GameObject
 {
 	bool isClockWise; // if it is true then direction is clockwise, if it is false then direction is anticlockwise

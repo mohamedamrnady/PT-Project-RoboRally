@@ -8,6 +8,8 @@
 #include "AddWaterPitAction.h"
 #include "AddWorkshopAction.h"
 #include "AddAntennaAction.h"
+#include "SelectCommandsAction.h"
+#include "ExecuteCommandsAction.h"
 #include "CreatePlayModeToolBarAction.h"   // Include the correct header file for CreatePlayMode
 #include "CreateDesignModeToolBarAction.h" // Include the correct header file for CreateDesignMode
 
@@ -97,6 +99,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case Add_Antenna:
 		pAct = new AddAntennaAction(this);
+		break;
+	case SELECT_COMMAND:
+		pAct = new SelectCommandsAction(this);
+		break;
+	case EXECUTE_COMMANDS:
+		pAct = new ExecuteCommandsAction(this);
 		break;
 
 	case STATUS: // a click on the status bar ==> no action

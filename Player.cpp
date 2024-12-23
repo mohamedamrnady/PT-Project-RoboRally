@@ -39,11 +39,30 @@ int Player::GetHealth()
 	return this->health;
 }
 
+Direction Player::getDirection()
+{
+	return currDirection;
+}
+
+void Player::setDirection(Direction dir)
+{
+	currDirection = dir;
+}
+
+void Player::SetSavedCommands(Command array[])
+{
+	SavedCommand = array;
+}
+Command *Player::GetSavedCommands()
+{
+	return SavedCommand;
+}
+
 int Player::GetPlayerNum() const
 {
 	return playerNum;
 }
-
+/*
 void Player::AddItem(WorkshopItem *item)
 {
 	// Check if the item is already purchased
@@ -63,7 +82,7 @@ void Player::AddItem(WorkshopItem *item)
 			break;
 		}
 	}
-}
+}*/
 // ====== Drawing Functions ======
 
 void Player::Draw(Output *pOut) const
@@ -104,199 +123,44 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	CellPosition currentCellPos = pCell->GetCellPosition();
 	for (int i = 0; i < sizeof(moveCommands); i++)
 	{
+		// direction doesn't change if moving forward
+		Direction moveDirection = currDirection;
+		int steps = 0;
 		// MOVE_FORWARD_ONE_STEP UP == MOVE_BACKWARD_ONE_STEP DOWN
-		// Execute the command
-		switch (moveCommands[i])
+		if (moveCommands[i] == MOVE_BACKWARD_ONE_STEP || moveCommands[i] == MOVE_BACKWARD_TWO_STEPS || moveCommands[i] == MOVE_BACKWARD_THREE_STEPS)
 		{
-		// Add cases for the new Command enum values
-		case MOVE_FORWARD_ONE_STEP:
 			switch (currDirection)
 			{
 			case UP:
-				if (currentCellPos.VCell() > 0)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() - 1);
-				}
+				moveDirection = DOWN;
 				break;
 			case DOWN:
-				if (currentCellPos.VCell() < NumVerticalCells - 1)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() + 1);
-				}
+				moveDirection = UP;
 				break;
 			case LEFT:
-				if (currentCellPos.HCell() > 0)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() - 1);
-				}
+				moveDirection = RIGHT;
 				break;
 			case RIGHT:
-				if (currentCellPos.HCell() < NumHorizontalCells - 1)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() + 1);
-				}
+				moveDirection = LEFT;
 				break;
 			}
-			break;
-
-		case MOVE_BACKWARD_ONE_STEP:
-			switch (currDirection)
-			{
-			case UP:
-				if (currentCellPos.VCell() < NumVerticalCells - 1)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() + 1);
-				}
-				break;
-			case DOWN:
-				if (currentCellPos.VCell() > 0)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() - 1);
-				}
-				break;
-			case LEFT:
-				if (currentCellPos.HCell() < NumHorizontalCells - 1)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() + 1);
-				}
-				break;
-			case RIGHT:
-				if (currentCellPos.HCell() > 0)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() - 1);
-				}
-				break;
-			}
-			break;
-
-		case MOVE_FORWARD_TWO_STEPS:
-			switch (currDirection)
-			{
-			case UP:
-				if (currentCellPos.VCell() > 1)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() - 2);
-				}
-				break;
-			case DOWN:
-				if (currentCellPos.VCell() < NumVerticalCells - 2)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() + 2);
-				}
-				break;
-			case LEFT:
-				if (currentCellPos.HCell() > 1)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() - 2);
-				}
-				break;
-			case RIGHT:
-				if (currentCellPos.HCell() < NumHorizontalCells - 2)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() + 2);
-				}
-				break;
-			}
-			break;
-
-		case MOVE_BACKWARD_TWO_STEPS:
-			switch (currDirection)
-			{
-			case UP:
-				if (currentCellPos.VCell() < NumVerticalCells - 2)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() + 2);
-				}
-				break;
-			case DOWN:
-				if (currentCellPos.VCell() > 1)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() - 2);
-				}
-				break;
-			case LEFT:
-				if (currentCellPos.HCell() < NumHorizontalCells - 2)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() + 2);
-				}
-				break;
-			case RIGHT:
-				if (currentCellPos.HCell() > 1)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() - 2);
-				}
-				break;
-			}
-			break;
-
-		case MOVE_FORWARD_THREE_STEPS:
-			switch (currDirection)
-			{
-			case UP:
-				if (currentCellPos.VCell() > 2)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() - 3);
-				}
-				break;
-			case DOWN:
-				if (currentCellPos.VCell() < NumVerticalCells - 3)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() + 3);
-				}
-				break;
-			case LEFT:
-				if (currentCellPos.HCell() > 2)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() - 3);
-				}
-				break;
-			case RIGHT:
-				if (currentCellPos.HCell() < NumHorizontalCells - 3)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() + 3);
-				}
-				break;
-			}
-			break;
-
-		case MOVE_BACKWARD_THREE_STEPS:
-			switch (currDirection)
-			{
-			case UP:
-				if (currentCellPos.VCell() < NumVerticalCells - 3)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() + 3);
-				}
-				break;
-			case DOWN:
-				if (currentCellPos.VCell() > 2)
-				{
-					currentCellPos.SetVCell(currentCellPos.VCell() - 3);
-				}
-				break;
-			case LEFT:
-				if (currentCellPos.HCell() < NumHorizontalCells - 3)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() + 3);
-				}
-				break;
-			case RIGHT:
-				if (currentCellPos.HCell() > 2)
-				{
-					currentCellPos.SetHCell(currentCellPos.HCell() - 3);
-				}
-				break;
-			}
-			break;
-
-		case ROTATE_CLOCKWISE:
-			currDirection = static_cast<Direction>((currDirection + 1) % 4);
-			break;
-
-		case ROTATE_COUNTERCLOCKWISE:
-			currDirection = static_cast<Direction>((currDirection + 3) % 4);
 			break;
 		}
+		// Get moving steps, ignoring direction
+		if (moveCommands[i] == MOVE_FORWARD_ONE_STEP || moveCommands[i] == MOVE_BACKWARD_ONE_STEP)
+		{
+			steps = 1;
+		}
+		else if (moveCommands[i] == MOVE_FORWARD_TWO_STEPS || moveCommands[i] == MOVE_BACKWARD_TWO_STEPS)
+		{
+			steps = 2;
+		}
+		else if (moveCommands[i] == MOVE_FORWARD_THREE_STEPS || moveCommands[i] == MOVE_BACKWARD_THREE_STEPS)
+		{
+			steps = 3;
+		}
+
+		currentCellPos.AddCellNum(steps, moveDirection);
 		pGrid->UpdatePlayerCell(this, currentCellPos);
 
 		pCell->GetGameObject()->Apply(pGrid, this);

@@ -17,11 +17,13 @@ class Player
 
 	// owned equipments
 	// carried consumables
-	WorkshopItem *purchasedItems[MAX_ITEM_COUNT];
+	// WorkshopItem *purchasedItems[MAX_ITEM_COUNT];
 	// carried laser type (default, double laser)
 	string laserType;
+
 	// isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
 	bool isHacked;
+	Command *SavedCommand; // array of the commands the playes has chosed
 
 public:
 	Player(Cell *pCell, int playerNum); // Constructor making any needed initializations
@@ -34,11 +36,16 @@ public:
 	bool SetHealth(int h); // A setter for the health points
 	int GetHealth();	   // A getter for the health points
 
+	Direction getDirection();
+	void setDirection(Direction dir);
+
+	void SetSavedCommands(Command array[]);
+
 	/// TODO: You can add setters and getters for data members here (if needed)
 	int GetPlayerNum() const;
 
 	// Setters
-	void AddItem(WorkshopItem *item);
+	// void AddItem(WorkshopItem *item);
 	// void setLaserType(string type);
 	// void setIsHacked(bool hacked);
 
@@ -55,6 +62,9 @@ public:
 	void ClearDrawing(Output *pOut) const; // Clears the Player's Triangle from its current cell
 
 	// ====== Game Functions ======
+
+	// void RandomCommandsGeneration();
+	Command *GetSavedCommands();
 
 	void Move(Grid *pGrid, Command moveCommands[]); // Moves the Player with the passed move command
 													// and Applies the Game Object's effect (if any) of the end reached cell
