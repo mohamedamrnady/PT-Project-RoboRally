@@ -223,6 +223,12 @@
     <ClCompile Include="WorkshopItem.cpp">
       <Filter>WorkshopItems</Filter>
     </ClCompile>
+    <ClCompile Include="SelectCommandsAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="ExecuteCommandsAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
     <ClCompile Include="RebootandRepair.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -377,6 +383,12 @@
       <Filter>WorkshopItems</Filter>
     </ClInclude>
     <ClInclude Include="RebootandRepair.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectCommandsAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ExecuteCommandsAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
