@@ -8,10 +8,10 @@
 Workshop::Workshop(const CellPosition &workshopPosition) : GameObject(workshopPosition)
 {
 	// initializes the workshop items
-	workshopItems[0] = new HackDeviceItem();
+	/*workshopItems[0] = new HackDeviceItem();
 	workshopItems[1] = new ToolkitItem();
 	workshopItems[2] = new ExtendedMemoryItem();
-	workshopItems[3] = new UpgradeLaserItem();
+	workshopItems[3] = new UpgradeLaserItem();*/
 }
 
 void Workshop::Draw(Output *pOut) const
@@ -21,6 +21,7 @@ void Workshop::Draw(Output *pOut) const
 
 void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 {
+	/*
 	Output *pOut;
 	Input *pIn;
 
@@ -79,9 +80,10 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		pOut->PrintMessage("Invalid choice.");
 		break;
 	}
+	*/
 }
 
 Workshop::~Workshop()
 {
-	delete[] workshopItems;
+	// delete[] workshopItems;
 }
