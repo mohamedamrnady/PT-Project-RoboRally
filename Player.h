@@ -2,6 +2,7 @@
 
 #include "Grid.h"
 #include "Cell.h"
+#include "WorkshopItem.h"
 
 class Player
 {
@@ -16,8 +17,11 @@ class Player
 
 	// owned equipments
 	// carried consumables
+	WorkshopItem *purchasedItems[MAX_ITEM_COUNT];
 	// carried laser type (default, double laser)
+	string laserType;
 	// isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
+	bool isHacked;
 
 public:
 	Player(Cell *pCell, int playerNum); // Constructor making any needed initializations
@@ -27,11 +31,22 @@ public:
 	void SetCell(Cell *cell); // A setter for the pCell
 	Cell *GetCell() const;	  // A getter for the pCell
 
-	void SetHealth(int h); // A setter for the health points
+	bool SetHealth(int h); // A setter for the health points
 	int GetHealth();	   // A getter for the health points
 
 	/// TODO: You can add setters and getters for data members here (if needed)
 	int GetPlayerNum() const;
+
+	// Setters
+	void AddItem(WorkshopItem *item);
+	// void setLaserType(string type);
+	// void setIsHacked(bool hacked);
+
+	// // Getters
+	// int getEquipments() const;
+	// bool getHaveConsumables() const;
+	// string getLaserType() const;
+	// bool getIsHacked() const;
 
 	// ====== Drawing Functions ======
 

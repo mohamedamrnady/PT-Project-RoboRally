@@ -5,8 +5,9 @@
 Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT)
 {
 	this->pCell = pCell;
-
 	// Make all the needed initialization or validations
+	laserType = "Standard";
+	isHacked = false;
 }
 
 // ====== Setters and Getters ======
@@ -21,9 +22,15 @@ Cell *Player::GetCell() const
 	return pCell;
 }
 
-void Player::SetHealth(int h)
+bool Player::SetHealth(int h)
 {
-	this->health = h;
+	if (h > 0 && h <= 10)
+	{
+		this->health = h;
+		return true;
+	}
+	else
+		return false;
 	/// TODO: Do any needed validations
 }
 
@@ -35,6 +42,27 @@ int Player::GetHealth()
 int Player::GetPlayerNum() const
 {
 	return playerNum;
+}
+
+void Player::AddItem(WorkshopItem *item)
+{
+	// Check if the item is already purchased
+	for (int i = 0; i < MAX_ITEM_COUNT; i++)
+	{
+		if (purchasedItems[i] == item)
+		{
+			return;
+		}
+	}
+	// Add the item to the player's purchased items
+	for (int i = 0; i < MAX_ITEM_COUNT; i++)
+	{
+		if (purchasedItems[i] == nullptr)
+		{
+			purchasedItems[i] = item;
+			break;
+		}
+	}
 }
 // ====== Drawing Functions ======
 
@@ -281,6 +309,20 @@ void Player::AppendPlayerInfo(string &playersInfo) const
 {
 	// TODO: Modify the Info as needed
 	playersInfo += "P" + to_string(playerNum) + "(";
-	playersInfo += to_string(currDirection) + ", ";
+	switch (currDirection)
+	{
+	case UP:
+		playersInfo += "UP, ";
+		break;
+	case DOWN:
+		playersInfo += "DOWN, ";
+		break;
+	case LEFT:
+		playersInfo += "LEFT, ";
+		break;
+	case RIGHT:
+		playersInfo += "RIGHT, ";
+		break;
+	}
 	playersInfo += to_string(health) + ")";
 }

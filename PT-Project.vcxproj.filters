@@ -25,6 +25,9 @@
     <Filter Include="GUIClasses">
       <UniqueIdentifier>{03fd4e0d-92e0-4271-bb9b-d6e9f21ec35f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WorkshopItems">
+      <UniqueIdentifier>{9cfa2785-794c-43bc-9cac-196ae068487b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -211,6 +214,15 @@
     <ClCompile Include="CreateDesignModeToolBarAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="ToolkitItem.cpp">
+      <Filter>WorkshopItems</Filter>
+    </ClCompile>
+    <ClCompile Include="HackDeviceItem.cpp">
+      <Filter>WorkshopItems</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkshopItem.cpp">
+      <Filter>WorkshopItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -351,6 +363,15 @@
     </ClInclude>
     <ClInclude Include="CreateDesignModeToolBarAction.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolkitItem.h">
+      <Filter>WorkshopItems</Filter>
+    </ClInclude>
+    <ClInclude Include="HackDeviceItem.h">
+      <Filter>WorkshopItems</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkshopItem.h">
+      <Filter>WorkshopItems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

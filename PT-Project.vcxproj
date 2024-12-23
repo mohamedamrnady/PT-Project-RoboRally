@@ -185,16 +185,19 @@
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="HackDeviceItem.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RotatingGear.cpp" />
+    <ClCompile Include="ToolkitItem.cpp" />
     <ClCompile Include="WaterPit.cpp" />
     <ClCompile Include="Workshop.cpp" />
     <ClCompile Include="AddAntennaAction.cpp" />
     <ClCompile Include="CreatePlayModeToolBarAction.cpp" />
     <ClCompile Include="CreateDesignModeToolBarAction.cpp" />
+    <ClCompile Include="WorkshopItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -234,16 +237,19 @@
     <ClInclude Include="Flag.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="HackDeviceItem.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RotatingGear.h" />
+    <ClInclude Include="ToolkitItem.h" />
     <ClInclude Include="UI_Info.h" />
     <ClInclude Include="WaterPit.h" />
     <ClInclude Include="Workshop.h" />
     <ClInclude Include="AddAntennaAction.h" />
     <ClInclude Include="CreatePlayModeToolBarAction.h" />
     <ClInclude Include="CreateDesignModeToolBarAction.h" />
+    <ClInclude Include="WorkshopItem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
