@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 
-Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT)
+Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT), NumOfSavedCommands(5)
 {
 	this->pCell = pCell;
 	// Make all the needed initialization or validations
@@ -172,15 +172,18 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 
 		currentCellPos.AddCellNum(steps, moveDirection);
 		pGrid->UpdatePlayerCell(this, currentCellPos);
-
-		pCell->GetGameObject()->Apply(pGrid, this);
+		GameObject *pObj = pCell->GetGameObject();
+		if (pObj)
+			pObj->Apply(pGrid, this);
 		if (pGrid->GetEndGame())
 		{
 			return;
 		}
-		pGrid->GetOutput()->PrintMessage("Click anywhere to execute the next command");
+		pGrid->GetOutput()->PrintMessage("Click anywhere to execute the next command" + to_string(i));
 		pGrid->GetInput()->GetCellClicked();
 	}
+
+	pGrid->GetOutput()->PrintMessage("Executed All commands");
 }
 
 void Player::AppendPlayerInfo(string &playersInfo) const
