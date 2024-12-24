@@ -18,7 +18,7 @@ class Player
 
 	// owned equipments
 	// carried consumables
-	WorkshopItemTypes purchasedItems[2];
+	WorkshopItem *purchasedItems[WORKSHOP_ITEMS_COUNT];
 	// carried laser type (default, double laser)
 	string laserType;
 
@@ -49,15 +49,15 @@ public:
 	void SetNumOfSavedCommands(int num);
 
 	// Setters
-	void AddItem(WorkshopItemTypes item);
-	// void setLaserType(string type);
-	// void setIsHacked(bool hacked);
+	void AddItem(WorkshopItem *item);
+	void UpgradeLaserType();
+	void SetIsHacked(bool hacked);
+	bool GetIsHacked() const;
 
 	// // Getters
 	// int getEquipments() const;
 	// bool getHaveConsumables() const;
 	// string getLaserType() const;
-	// bool getIsHacked() const;
 
 	// ====== Drawing Functions ======
 

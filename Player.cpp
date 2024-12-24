@@ -72,10 +72,10 @@ void Player::SetNumOfSavedCommands(int num)
 		NumOfSavedCommands = num;
 }
 
-void Player::AddItem(WorkshopItemTypes item)
+void Player::AddItem(WorkshopItem *item)
 {
 	// Check if the item is already purchased
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
 	{
 		if (purchasedItems[i] && purchasedItems[i] == item)
 		{
@@ -83,7 +83,7 @@ void Player::AddItem(WorkshopItemTypes item)
 		}
 	}
 	// Add the item to the player's purchased items
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
 	{
 		if (!purchasedItems[i])
 		{
@@ -93,6 +93,20 @@ void Player::AddItem(WorkshopItemTypes item)
 	}
 }
 
+void Player::UpgradeLaserType()
+{
+	laserType = "double";
+};
+
+void Player::SetIsHacked(bool hacked)
+{
+	isHacked = hacked;
+}
+
+bool Player::GetIsHacked() const
+{
+	return isHacked;
+}
 // ====== Drawing Functions ======
 
 void Player::Draw(Output *pOut) const

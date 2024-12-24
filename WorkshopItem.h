@@ -16,6 +16,7 @@ public:
     //                                          // (code depends on action type so virtual)
 
     virtual void Execute(Grid *pGrid, Player *player) = 0; // Executes action
+    int GetCost() const;                                   // Returns cost of item
 
     // Destructor
     virtual ~WorkshopItem();
