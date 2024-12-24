@@ -8,10 +8,10 @@
 Workshop::Workshop(const CellPosition &workshopPosition) : GameObject(workshopPosition)
 {
 	// initializes the workshop items
-	workshopItems[0] = new HackDeviceItem();
-	workshopItems[1] = new ToolkitItem();
-	workshopItems[2] = new ExtendedMemoryItem();
-	workshopItems[3] = new UpgradeLaserItem();
+	workshopItems[HACK_DEVICE] = new HackDeviceItem(1);
+	workshopItems[TOOLKIT] = new ToolkitItem(1);
+	workshopItems[EXTENDED_MEMORY] = new ExtendedMemoryItem(1);
+	workshopItems[UPGRADE_LASER] = new UpgradeLaserItem(1);
 }
 
 void Workshop::Draw(Output *pOut) const
@@ -34,7 +34,7 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		switch (choice)
 		{
 		case 1:
-			workshopItems[3]->Execute(pGrid, pPlayer); // Upgrade Laser applied instead of adding to user items
+			// workshopItems[UPGRADE_LASER]->Execute(pGrid, pPlayer); // Upgrade Laser applied instead of adding to user items
 			pOut->PrintMessage("Using Double laser.");
 			break;
 		default:
@@ -49,7 +49,7 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		switch (choice)
 		{
 		case 1:
-			workshopItems[2]->Execute(pGrid, pPlayer); // Exteneded Memory applied instead of adding to user items
+			// workshopItems[EXTENDED_MEMORY]->Execute(pGrid, pPlayer); // Exteneded Memory applied instead of adding to user items
 			pOut->PrintMessage("Extended Memory is applied");
 			break;
 		default:
@@ -63,11 +63,11 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		switch (choice)
 		{
 		case 1:
-			pPlayer->AddItem(workshopItems[0]);
+			pPlayer->AddItem(HACK_DEVICE);
 			pOut->PrintMessage("Hack Device is added to your items.");
 			break;
 		case 2:
-			pPlayer->AddItem(workshopItems[1]);
+			pPlayer->AddItem(TOOLKIT);
 			pOut->PrintMessage("Toolkit is added to your items.");
 			break;
 		default:
@@ -83,5 +83,6 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 
 Workshop::~Workshop()
 {
-	delete[] workshopItems;
+	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
+		delete workshopItems[i];
 }

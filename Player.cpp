@@ -72,20 +72,20 @@ void Player::SetNumOfSavedCommands(int num)
 		NumOfSavedCommands = num;
 }
 
-void Player::AddItem(WorkshopItem *item)
+void Player::AddItem(WorkshopItemTypes item)
 {
 	// Check if the item is already purchased
-	for (int i = 0; i < MAX_ITEM_COUNT; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		if (purchasedItems[i] == item)
+		if (purchasedItems[i] && purchasedItems[i] == item)
 		{
 			return;
 		}
 	}
 	// Add the item to the player's purchased items
-	for (int i = 0; i < MAX_ITEM_COUNT; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		if (purchasedItems[i] == nullptr)
+		if (!purchasedItems[i])
 		{
 			purchasedItems[i] = item;
 			break;

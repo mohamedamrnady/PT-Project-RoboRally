@@ -1,6 +1,6 @@
 #include "UpgradeLaserItem.h"
 
-UpgradeLaserItem::UpgradeLaserItem() : cost(3)
+UpgradeLaserItem::UpgradeLaserItem(int c) : WorkshopItem(c)
 {
 }
 

@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "Cell.h"
 #include "WorkshopItem.h"
+#include "DEFS.h"
 
 class Player
 {
@@ -17,7 +18,7 @@ class Player
 
 	// owned equipments
 	// carried consumables
-	WorkshopItem *purchasedItems[MAX_ITEM_COUNT];
+	WorkshopItemTypes purchasedItems[2];
 	// carried laser type (default, double laser)
 	string laserType;
 
@@ -48,7 +49,7 @@ public:
 	void SetNumOfSavedCommands(int num);
 
 	// Setters
-	void AddItem(WorkshopItem *item);
+	void AddItem(WorkshopItemTypes item);
 	// void setLaserType(string type);
 	// void setIsHacked(bool hacked);
 

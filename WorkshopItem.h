@@ -1,5 +1,4 @@
 #pragma once
-#define MAX_ITEM_COUNT 3
 
 #include "Player.h"
 #include <iostream>
@@ -8,11 +7,11 @@ using namespace std;
 class WorkshopItem
 {
 protected:
-    int const cost;
+    int cost;
 
 public:
     // Constructor
-    WorkshopItem();
+    WorkshopItem(int c);
     // virtual void ReadActionParameters() = 0; // Reads parameters required for action to execute
     //                                          // (code depends on action type so virtual)
 

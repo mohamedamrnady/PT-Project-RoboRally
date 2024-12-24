@@ -1,6 +1,6 @@
 #include "HackDeviceItem.h"
 
-HackDeviceItem::HackDeviceItem() : cost(2)
+HackDeviceItem::HackDeviceItem(int c) : WorkshopItem(c)
 {
 }
 

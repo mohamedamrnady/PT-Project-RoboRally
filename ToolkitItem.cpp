@@ -1,6 +1,6 @@
 #include "ToolkitItem.h"
 
-ToolkitItem::ToolkitItem() : cost(3)
+ToolkitItem::ToolkitItem(int c) : WorkshopItem(c)
 {
 }
 

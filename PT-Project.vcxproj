@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -31,11 +32,15 @@
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
+      Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
+      Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
+      Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
+      Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -196,6 +201,8 @@
     <ClCompile Include="CreatePlayModeToolBarAction.cpp" />
     <ClCompile Include="CreateDesignModeToolBarAction.cpp" />
     <ClCompile Include="WorkshopItem.cpp" />
+    <ClCompile Include="UpgradeLaserItem.cpp" />
+    <ClCompile Include="ExtendedMemoryItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -251,6 +258,8 @@
     <ClInclude Include="CreatePlayModeToolBarAction.h" />
     <ClInclude Include="CreateDesignModeToolBarAction.h" />
     <ClInclude Include="WorkshopItem.h" />
+    <ClInclude Include="UpgradeLaserItem.h" />
+    <ClInclude Include="ExtendedMemoryItem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

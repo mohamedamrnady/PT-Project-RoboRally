@@ -69,4 +69,14 @@ enum Command
 
 	COMMANDS_COUNT,
 };
+
+enum WorkshopItemTypes
+{
+	HACK_DEVICE,
+	TOOLKIT,
+	EXTENDED_MEMORY,
+	UPGRADE_LASER,
+
+	WORKSHOP_ITEMS_COUNT,
+};
 #endif

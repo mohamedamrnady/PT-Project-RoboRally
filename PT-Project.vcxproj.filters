@@ -232,6 +232,12 @@
     <ClCompile Include="RebootandRepair.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="UpgradeLaserItem.cpp">
+      <Filter>WorkshopItems</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtendedMemoryItem.cpp">
+      <Filter>WorkshopItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -390,6 +396,12 @@
     </ClInclude>
     <ClInclude Include="ExecuteCommandsAction.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradeLaserItem.h">
+      <Filter>WorkshopItems</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendedMemoryItem.h">
+      <Filter>WorkshopItems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

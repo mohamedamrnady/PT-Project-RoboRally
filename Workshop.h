@@ -5,7 +5,7 @@
 class Workshop : public GameObject
 {
 private:
-	WorkshopItem *workshopItems[MAX_ITEM_COUNT]; // Array of pointers to workshop items
+	WorkshopItem *workshopItems[WORKSHOP_ITEMS_COUNT]; // Array of pointers to workshop items
 
 public:
 	Workshop(const CellPosition &workshopPosition);

@@ -1,6 +1,6 @@
 #include "ExtendedMemoryItem.h"
 
-ExtendedMemoryItem::ExtendedMemoryItem() : cost(3)
+ExtendedMemoryItem::ExtendedMemoryItem(int c) : WorkshopItem(c)
 {
 }
 
