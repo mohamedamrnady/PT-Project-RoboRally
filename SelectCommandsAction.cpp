@@ -13,79 +13,55 @@ void SelectCommandsAction::Execute()
 {
 
     // Get a Pointer to the Output Interface
-    Grid* pGrid = pManager->GetGrid();
-    Output* pOut = pGrid->GetOutput();
-    Input* pIn = pGrid->GetInput();
+    Grid *pGrid = pManager->GetGrid();
+    Output *pOut = pGrid->GetOutput();
+    Input *pIn = pGrid->GetInput();
 
     pOut->ClearCommandsBar();
-    Player* CurrentPlayer = pGrid->GetCurrentPlayer();
-    Command* SavedCommands=NULL;    // pointer to array of saved commands (has max size)
-    Command* AvailableCommand=NULL; // pointer to the available command player can have
+    Player *CurrentPlayer = pGrid->GetCurrentPlayer();
+    Command *SavedCommands;
+    int commandSaved = 0;
 
-
-    int ActualMaxNumberOfCommands = 0;
-    //actual number that the player can save to their savedCommands
-
-    int numAvailablCommands = CurrentPlayer->GetHealth();
-    // get's the size of the number of command the player have as available
-
-    int MaxNumToSavedCommands = CurrentPlayer->GetNumOfSavedCommands(); // maximum size of saved-commands of the player - consider the extend memory
-    ActualMaxNumberOfCommands = MaxNumToSavedCommands;
-
-
-    if (numAvailablCommands > MaxNumToSavedCommands) {
-        ActualMaxNumberOfCommands = MaxNumToSavedCommands;
-    }
-    else
-        ActualMaxNumberOfCommands=numAvailablCommands;
-
-    AvailableCommand= new Command[numAvailablCommands];
-    SavedCommands = new Command[MaxNumToSavedCommands];
-
-    for (int i = 0; i < numAvailablCommands; i++)
+    Command AvailableCommand[10];
+    if (CurrentPlayer->GetHealth() > 5)
     {
-        AvailableCommand[i] = NO_COMMAND;
-        while (AvailableCommand[i] == NO_COMMAND)
-            AvailableCommand[i] = static_cast<Command>(rand() % COMMANDS_COUNT);   
+        SavedCommands = new Command[5];
+        commandSaved = 5;
     }
-    //initialize the availableCommand array
-    for (int i = 0; i < MaxNumToSavedCommands; i++)
+    else if (CurrentPlayer->GetHealth() > 0)
+    {
+        SavedCommands = new Command[CurrentPlayer->GetHealth()];
+        commandSaved = CurrentPlayer->GetHealth();
+    }
+
+    for (int i = 0; i < commandSaved; i++)
     {
         SavedCommands[i] = NO_COMMAND;
     }
-    //initialize the saved commands array
+    for (int i = 0; i < 10; i++)
+    {
+        AvailableCommand[i] = static_cast<Command>(rand() % COMMANDS_COUNT);
+    }
 
     // Create the Design Command Bar
-    pOut->CreateCommandsBar(SavedCommands, MaxNumToSavedCommands, AvailableCommand, numAvailablCommands);
+    pOut->CreateCommandsBar(SavedCommands, commandSaved, AvailableCommand, 10);
     int j = 0;
-    int lastIndex = 0;
-    for (int i = 0; i < ActualMaxNumberOfCommands; i++)
+    for (int i = 0; i < commandSaved; i++)
     {
         pOut->PrintMessage("Select the commands you want");
         int indexOfCommand = pIn->GetSelectedCommandIndex();
         if (indexOfCommand != -1)
         {
-            SavedCommands[i] = AvailableCommand[indexOfCommand];
-            AvailableCommand[indexOfCommand] = NO_COMMAND;
-            pOut->CreateCommandsBar(SavedCommands, MaxNumToSavedCommands, AvailableCommand, numAvailablCommands);
-
-            if (MaxNumToSavedCommands > ActualMaxNumberOfCommands) {
-                int lastIndex = ActualMaxNumberOfCommands;
-                for (int i = lastIndex; i < MaxNumToSavedCommands; i++)
-                {
-                    SavedCommands[i] = NO_COMMAND;
-                }
-            }
+            SavedCommands[j] = AvailableCommand[i];
+            j++;
+            AvailableCommand[i] = NO_COMMAND;
+            pOut->CreateCommandsBar(SavedCommands, commandSaved, AvailableCommand, 10 - j);
         }
-        else {
+        else
             pGrid->PrintErrorMessage("Missing a command because wrong input");
-        
-        }
     }
     // saved commands are now stored
     CurrentPlayer->SetSavedCommands(SavedCommands);
-    pOut->PrintMessage("You have selected all possible commands");
-    pIn->GetCellClicked();
 }
 
 SelectCommandsAction::~SelectCommandsAction()
