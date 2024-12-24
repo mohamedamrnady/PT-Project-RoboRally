@@ -21,8 +21,8 @@ void Workshop::Draw(Output *pOut) const
 
 void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 {
-	Output *pOut;
-	Input *pIn;
+	Output *pOut = pGrid->GetOutput();
+	Input *pIn = pGrid->GetInput();
 
 	pOut->PrintMessage("Choose what you want to buy: 1) Weapons  2) Devices  3) Consumables");
 	int choice = pIn->GetInteger(pOut);
