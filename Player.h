@@ -17,7 +17,7 @@ class Player
 
 	// owned equipments
 	// carried consumables
-	// WorkshopItem *purchasedItems[MAX_ITEM_COUNT];
+	WorkshopItem *purchasedItems[MAX_ITEM_COUNT];
 	// carried laser type (default, double laser)
 	string laserType;
 
@@ -48,7 +48,7 @@ public:
 	void SetNumOfSavedCommands(int num);
 
 	// Setters
-	// void AddItem(WorkshopItem *item);
+	void AddItem(WorkshopItem *item);
 	// void setLaserType(string type);
 	// void setIsHacked(bool hacked);
 

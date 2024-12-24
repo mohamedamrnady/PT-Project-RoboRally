@@ -71,7 +71,7 @@ void Player::SetNumOfSavedCommands(int num)
 	if (num == 5 || num == 6)
 		NumOfSavedCommands = num;
 }
-/*
+
 void Player::AddItem(WorkshopItem *item)
 {
 	// Check if the item is already purchased
@@ -91,7 +91,8 @@ void Player::AddItem(WorkshopItem *item)
 			break;
 		}
 	}
-}*/
+}
+
 // ====== Drawing Functions ======
 
 void Player::Draw(Output *pOut) const
