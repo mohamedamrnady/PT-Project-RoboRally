@@ -24,6 +24,7 @@ class Player
 	// isHacked (to indicate whether the player is blocked to play the round, as a result of the opponent using a hacking device)
 	bool isHacked;
 	Command *SavedCommand; // array of the commands the playes has chosed
+	int NumOfSavedCommands;
 
 public:
 	Player(Cell *pCell, int playerNum); // Constructor making any needed initializations
@@ -43,6 +44,8 @@ public:
 
 	/// TODO: You can add setters and getters for data members here (if needed)
 	int GetPlayerNum() const;
+	int GetNumOfSavedCommands() const;
+	void SetNumOfSavedCommands(int num);
 
 	// Setters
 	// void AddItem(WorkshopItem *item);

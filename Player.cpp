@@ -62,6 +62,15 @@ int Player::GetPlayerNum() const
 {
 	return playerNum;
 }
+int Player::GetNumOfSavedCommands() const
+{
+	return NumOfSavedCommands;
+}
+void Player::SetNumOfSavedCommands(int num)
+{
+	if (num == 5 || num == 6)
+		NumOfSavedCommands = num;
+}
 /*
 void Player::AddItem(WorkshopItem *item)
 {
@@ -121,7 +130,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	// - Don't forget to apply game objects at the final destination cell and check for game ending
 
 	CellPosition currentCellPos = pCell->GetCellPosition();
-	for (int i = 0; i < sizeof(moveCommands); i++)
+	for (int i = 0; i < NumOfSavedCommands; i++) // sizeof(moveCommands)
 	{
 		// direction doesn't change if moving forward
 		Direction moveDirection = currDirection;
