@@ -12,6 +12,7 @@
 #include "CreatePlayModeToolBarAction.h"
 #include "CreateDesignModeToolBarAction.h"
 #include "UseConsumablesAction.h"
+#include "RebootandRepair.h"
 
 /// TODO: Add #include for all action types
 
@@ -114,6 +115,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pOut = new Output();
 		pIn = pOut->CreateInput();
 		pGrid = new Grid(pIn, pOut);
+	case Reboot_and_Repair:
+		pAct = new RebootandRepair(this);
+		break;
 	case STATUS: // a click on the status bar ==> no action
 		return;
 	}
