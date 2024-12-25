@@ -187,6 +187,9 @@
     <ClCompile Include="Antenna.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="BeltEnd.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
     <ClCompile Include="AddBeltAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -353,6 +356,9 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Antenna.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="BeltEnd.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="AddBeltAction.h">

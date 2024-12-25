@@ -204,6 +204,7 @@
     <ClCompile Include="UpgradeLaserItem.cpp" />
     <ClCompile Include="ExtendedMemoryItem.cpp" />
     <ClCompile Include="UseConsumablesAction.cpp" />
+    <ClCompile Include="BeltEnd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -262,6 +263,7 @@
     <ClInclude Include="UpgradeLaserItem.h" />
     <ClInclude Include="ExtendedMemoryItem.h" />
     <ClInclude Include="UseConsumablesAction.h" />
+    <ClInclude Include="BeltEnd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

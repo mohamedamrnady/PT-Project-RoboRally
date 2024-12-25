@@ -1,4 +1,5 @@
 #include "AddBeltAction.h"
+#include "BeltEnd.h"
 
 AddBeltAction::AddBeltAction(ApplicationManager *pApp) : Action(pApp)
 {
@@ -46,27 +47,27 @@ void AddBeltAction::Execute()
 
 	// Create a belt object with the parameters read from the user
 	Belt *pBelt = new Belt(startPos, endPos);
+	BeltEnd *pBeltEnd = new BeltEnd(endPos);
 
 	Grid *pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
 
-	bool added = false;
-	GameObject *pBeltEnd = new Belt(endPos, endPos);
-	if (pGrid->AddObjectToCell(pBelt))
-	{
-		pBelt->GetEndPosition();
-		if (pGrid->AddObjectToCell(pBeltEnd))
-		{
-			added = true;
-		}
-		else
-			pGrid->RemoveObjectFromCell(startPos);
-	}
+	bool startAdded = pGrid->AddObjectToCell(pBelt);
+	bool endAdded = pGrid->AddObjectToCell(pBeltEnd);
 
 	// if the GameObject cannot be added
-	if (!added)
+	if (startAdded && !endAdded)
 	{
-		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+		pGrid->RemoveObjectFromCell(startPos);
+		pGrid->PrintErrorMessage("Error: End Cell already has an object ! Click to continue ...");
+	}
+	else if (!startAdded && endAdded)
+	{
+		pGrid->RemoveObjectFromCell(endPos);
+		pGrid->PrintErrorMessage("Error: Start Cell already has an object ! Click to continue ...");
+	}
+	else if (!startAdded && !endAdded)
+	{
+		pGrid->PrintErrorMessage("Error: Start & End Cells already have an object ! Click to continue ...");
 	}
 	// Here, the belt is created and added to the GameObject of its Cell, so we finished executing the AddBeltAction
 }
