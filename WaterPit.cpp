@@ -21,8 +21,7 @@ void WaterPit::Apply(Grid *pGrid, Player *pPlayer)
 	pGrid->PrintErrorMessage("You drowned in a water pit. Player " + std::to_string(pPlayer->GetPlayerNum()) + " lost! Click to continue ...");
 
 	// 2- Apply the water pit's effect by setting the player's health which drowned to zero and ending the game
-	pPlayer->SetHealth(0);
-	pGrid->SetEndGame(true);
+	pPlayer->SetHealth(0, pGrid);
 	// 3- Update the players info which is displayed (check Grid class and decide which function to use)
 	pGrid->UpdateInterface();
 }

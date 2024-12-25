@@ -16,7 +16,7 @@ void RebootandRepair::Execute()
     Player *pPlayer = pGrid->GetCurrentPlayer();
     pOut->PrintMessage("Reboot and Repair: Click to continue ...");
     pIn->GetCellClicked();
-    pPlayer->SetHealth(pPlayer->GetHealth() + 2);
+    pPlayer->SetHealth(pPlayer->GetHealth() + 2, pGrid);
     pOut->ClearStatusBar();
     pGrid->AdvanceCurrentPlayer();
 }

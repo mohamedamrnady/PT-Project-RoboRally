@@ -36,7 +36,7 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		{
 		case 1:
 			workshopItems[UPGRADE_LASER]->Execute(pGrid, pPlayer); // Upgrade Laser applied instead of adding to user items
-			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost());
+			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost(), pGrid);
 			break;
 		default:
 			pOut->PrintMessage("No upgrades applied.");
@@ -51,7 +51,7 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		{
 		case 1:
 			workshopItems[EXTENDED_MEMORY]->Execute(pGrid, pPlayer); // Exteneded Memory applied instead of adding to user items
-			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost());
+			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost(), pGrid);
 			pOut->PrintMessage("Extended Memory is applied");
 			break;
 		default:
@@ -66,12 +66,12 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		{
 		case 1:
 			pPlayer->AddItem(HACK_DEVICE);
-			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost());
+			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost(), pGrid);
 			pOut->PrintMessage("Hack Device is added to your items.");
 			break;
 		case 2:
 			pPlayer->AddItem(TOOLKIT);
-			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost());
+			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost(), pGrid);
 			pOut->PrintMessage("Toolkit is added to your items.");
 			break;
 		default:
@@ -80,7 +80,7 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		}
 		break; // related to commands
 	case 4:
-		pPlayer->SetHealth(10);
+		pPlayer->SetHealth(10, pGrid);
 		pOut->PrintMessage("Repaired successfully.");
 		break;
 	default:

@@ -27,9 +27,15 @@ Cell *Player::GetCell() const
 	return pCell;
 }
 
-bool Player::SetHealth(int h)
+bool Player::SetHealth(int h, Grid *pGrid)
 {
-	if (h > 0 && h <= 10)
+	if (h <= 0)
+	{
+		health = 0;
+		pGrid->SetEndGame(true);
+		return true;
+	}
+	else if (h > 0 && h <= 10)
 	{
 		this->health = h;
 		return true;
@@ -118,6 +124,11 @@ void Player::UpgradeLaserType()
 {
 	laserType = "double";
 };
+
+string Player::getLaserType() const
+{
+	return laserType;
+}
 
 void Player::SetIsHacked(bool hacked)
 {
@@ -255,10 +266,4 @@ void Player::AppendPlayerInfo(string &playersInfo) const
 		break;
 	}
 	playersInfo += to_string(health) + ")";
-}
-void Player::shoot(Grid *pGrid)
-{
-	Player *target = pGrid->GetCurrentPlayer();
-	if (target)
-		target->SetHealth(GetHealth() - 1);
 }

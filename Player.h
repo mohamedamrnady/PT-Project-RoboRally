@@ -35,8 +35,8 @@ public:
 	void SetCell(Cell *cell); // A setter for the pCell
 	Cell *GetCell() const;	  // A getter for the pCell
 
-	bool SetHealth(int h); // A setter for the health points
-	int GetHealth();	   // A getter for the health points
+	bool SetHealth(int h, Grid *pGrid); // A setter for the health points
+	int GetHealth();					// A getter for the health points
 
 	Direction getDirection();
 	void setDirection(Direction dir);
@@ -54,6 +54,7 @@ public:
 	void SetWorkshop(Workshop *workshop);
 	Workshop *GetWorkshop() const;
 	void UpgradeLaserType();
+	string getLaserType() const;
 	void SetIsHacked(bool hacked);
 	bool GetIsHacked() const;
 
@@ -78,5 +79,4 @@ public:
 
 	void AppendPlayerInfo(string &playersInfo) const; // Appends player's info to the input string,
 													  // for example: P0(Direction, health)
-	void shoot(Grid *pGrid);
 };
