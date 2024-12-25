@@ -166,8 +166,10 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 	// - Don't forget to apply game objects at the final destination cell and check for game ending
 
 	CellPosition currentCellPos = pCell->GetCellPosition();
+	Output *pOut = pGrid->GetOutput();
 	for (int i = 0; i < NumOfSavedCommands; i++) // sizeof(moveCommands)
 	{
+		bool isCommandRotating = false;
 		// direction doesn't change if moving forward
 		Direction moveDirection = currDirection;
 		int steps = 0;
@@ -205,59 +207,32 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		}
 		else if (moveCommands[i] == ROTATE_CLOCKWISE)
 		{
-			steps = 0;
-			switch (currDirection)
-			{
-			case UP:
-				moveDirection = RIGHT;
-				break;
-			case DOWN:
-				moveDirection = LEFT;
-				break;
-			case LEFT:
-				moveDirection = UP;
-				break;
-			case RIGHT:
-				moveDirection = DOWN;
-				break;
-			}
+			moveDirection = static_cast<Direction>((currDirection + 1) % 4);
+			ClearDrawing(pOut);
+			isCommandRotating = true;
 		}
 		else if (moveCommands[i] == ROTATE_COUNTERCLOCKWISE)
 		{
-			steps = 0;
-			switch (currDirection)
-			{
-			case UP:
-				moveDirection = LEFT;
-				break;
-			case DOWN:
-				moveDirection = RIGHT;
-				break;
-			case LEFT:
-				moveDirection = DOWN;
-				break;
-			case RIGHT:
-				moveDirection = UP;
-				break;
-			}
+			moveDirection = static_cast<Direction>((currDirection - 1) % 4);
+			ClearDrawing(pOut);
+			isCommandRotating = true;
 		}
-
-		pGrid->GetCurrentPlayer()->ClearDrawing(pGrid->GetOutput());
-		pGrid->GetCurrentPlayer()->setDirection(moveDirection);
+		if (isCommandRotating)
+			setDirection(moveDirection);
 		currentCellPos.AddCellNum(steps, moveDirection);
 		pGrid->UpdatePlayerCell(this, currentCellPos);
 		GameObject *pObj = pCell->GetGameObject();
-		if (pObj)
+		if (pObj && !isCommandRotating)
 			pObj->Apply(pGrid, this);
 		if (pGrid->GetEndGame())
 		{
 			return;
 		}
-		pGrid->GetOutput()->PrintMessage("Click anywhere to execute the next command " + to_string(i));
+		pOut->PrintMessage("Click anywhere to execute the next command " + to_string(i));
 		pGrid->GetInput()->GetCellClicked();
 	}
 
-	pGrid->GetOutput()->PrintMessage("Executed All commands");
+	pOut->PrintMessage("Executed All commands");
 }
 
 void Player::AppendPlayerInfo(string &playersInfo) const
