@@ -13,6 +13,16 @@ void ExecuteCommandsAction::Execute()
 {
     Grid *pGrid = pManager->GetGrid();
     Player *CurrentPlayer = pGrid->GetCurrentPlayer();
+    if (pGrid->GetEndGame())
+    {
+        if (CurrentPlayer->GetHealth() == 0)
+            pGrid->GetOutput()->PrintMessage("Player " + to_string(CurrentPlayer->GetPlayerNum()) + " has lost the game, click to continue");
+        else
+        {
+            pGrid->GetOutput()->PrintMessage("Player " + to_string(CurrentPlayer->GetPlayerNum()) + " has won the game, click to continue");
+        }
+        return;
+    }
 
     CurrentPlayer->Move(pGrid, CurrentPlayer->GetSavedCommands());
     pGrid->AdvanceCurrentPlayer();
