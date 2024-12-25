@@ -16,6 +16,12 @@ void ExecuteCommandsAction::Execute()
 
     CurrentPlayer->Move(pGrid, CurrentPlayer->GetSavedCommands());
     pGrid->AdvanceCurrentPlayer();
+    if (pGrid->GetCurrentPlayer()->GetIsHacked())
+    {
+        pGrid->GetOutput()->PrintMessage("Player " + to_string(pGrid->GetCurrentPlayer()->GetPlayerNum()) + " is hacked and can't play this round");
+        pGrid->GetCurrentPlayer()->SetIsHacked(false);
+        pGrid->AdvanceCurrentPlayer();
+    }
 }
 
 ExecuteCommandsAction::~ExecuteCommandsAction()
