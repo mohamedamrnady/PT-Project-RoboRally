@@ -203,7 +203,6 @@
     <ClCompile Include="WorkshopItem.cpp" />
     <ClCompile Include="UpgradeLaserItem.cpp" />
     <ClCompile Include="ExtendedMemoryItem.cpp" />
-    <ClCompile Include="ExitAction.cpp" />
     <ClCompile Include="UseConsumablesAction.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -262,7 +261,6 @@
     <ClInclude Include="WorkshopItem.h" />
     <ClInclude Include="UpgradeLaserItem.h" />
     <ClInclude Include="ExtendedMemoryItem.h" />
-    <ClInclude Include="ExitAction.h" />
     <ClInclude Include="UseConsumablesAction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

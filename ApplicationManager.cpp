@@ -1,5 +1,4 @@
 #include "ApplicationManager.h"
-#include "ExitAction.h"
 #include "Grid.h"
 #include "AddBeltAction.h"
 #include "AddRotatingGearAction.h"
@@ -79,8 +78,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case EXIT:
-		pAct = new ExitAction(this);
-		break;
+		return;
 	case TO_PLAY_MODE:								  // TODO:
 		pAct = new CreatePlayModeToolBarAction(this); // Use the correct class name
 		break;

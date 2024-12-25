@@ -238,9 +238,6 @@
     <ClCompile Include="ExtendedMemoryItem.cpp">
       <Filter>WorkshopItems</Filter>
     </ClCompile>
-    <ClCompile Include="ExitAction.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
     <ClCompile Include="UseConsumablesAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -408,9 +405,6 @@
     </ClInclude>
     <ClInclude Include="ExtendedMemoryItem.h">
       <Filter>WorkshopItems</Filter>
-    </ClInclude>
-    <ClInclude Include="ExitAction.h">
-      <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="UseConsumablesAction.h">
       <Filter>Actions</Filter>
