@@ -64,12 +64,12 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 		switch (choice)
 		{
 		case 1:
-			pPlayer->AddItem(workshopItems[HACK_DEVICE]);
+			pPlayer->AddItem(HACK_DEVICE);
 			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost());
 			pOut->PrintMessage("Hack Device is added to your items.");
 			break;
 		case 2:
-			pPlayer->AddItem(workshopItems[TOOLKIT]);
+			pPlayer->AddItem(TOOLKIT);
 			pPlayer->SetHealth(pPlayer->GetHealth() - workshopItems[UPGRADE_LASER]->GetCost());
 			pOut->PrintMessage("Toolkit is added to your items.");
 			break;
