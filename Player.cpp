@@ -8,6 +8,11 @@ Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum
 	// Make all the needed initialization or validations
 	laserType = "Standard";
 	isHacked = false;
+	purchasedItems = new WorkshopItemTypes[WORKSHOP_ITEMS_COUNT];
+	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
+	{
+		purchasedItems[i] = static_cast<WorkshopItemTypes>(-1); // Use -1 as a placeholder for uninitialized items
+	}
 }
 
 // ====== Setters and Getters ======
@@ -75,23 +80,40 @@ void Player::SetNumOfSavedCommands(int num)
 void Player::AddItem(WorkshopItemTypes item)
 {
 	// Check if the item is already purchased
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
 	{
-		if (purchasedItems[i] && purchasedItems[i] == item)
+		if (purchasedItems[i] == item)
 		{
 			return;
 		}
 	}
 	// Add the item to the player's purchased items
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
 	{
-		if (!purchasedItems[i])
+		if (purchasedItems[i] == static_cast<WorkshopItemTypes>(-1)) // Check for uninitialized items
 		{
 			purchasedItems[i] = item;
 			break;
 		}
 	}
 }
+
+WorkshopItemTypes *Player::GetItems() const
+{
+
+	return purchasedItems;
+}
+
+void Player::SetWorkshop(Workshop *workshop)
+{
+	pWorkshop = workshop;
+}
+
+Workshop *Player::GetWorkshop() const
+{
+	return pWorkshop;
+}
+
 void Player::UpgradeLaserType()
 {
 	laserType = "double";
@@ -221,7 +243,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		}
 
 		pGrid->GetCurrentPlayer()->ClearDrawing(pGrid->GetOutput());
-		// pGrid->GetCurrentPlayer()->setDirection(moveDirection);
+		pGrid->GetCurrentPlayer()->setDirection(moveDirection);
 		currentCellPos.AddCellNum(steps, moveDirection);
 		pGrid->UpdatePlayerCell(this, currentCellPos);
 		GameObject *pObj = pCell->GetGameObject();

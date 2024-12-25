@@ -15,6 +15,7 @@ void ExecuteCommandsAction::Execute()
     Player *CurrentPlayer = pGrid->GetCurrentPlayer();
 
     CurrentPlayer->Move(pGrid, CurrentPlayer->GetSavedCommands());
+    pGrid->AdvanceCurrentPlayer();
 }
 
 ExecuteCommandsAction::~ExecuteCommandsAction()

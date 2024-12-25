@@ -10,8 +10,9 @@
 #include "AddAntennaAction.h"
 #include "SelectCommandsAction.h"
 #include "ExecuteCommandsAction.h"
-#include "CreatePlayModeToolBarAction.h"   // Include the correct header file for CreatePlayMode
-#include "CreateDesignModeToolBarAction.h" // Include the correct header file for CreateDesignMode
+#include "CreatePlayModeToolBarAction.h"
+#include "CreateDesignModeToolBarAction.h"
+#include "UseConsumablesAction.h"
 
 /// TODO: Add #include for all action types
 
@@ -107,7 +108,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case EXECUTE_COMMANDS:
 		pAct = new ExecuteCommandsAction(this);
 		break;
-
+	case Use_Consumable:
+		pAct = new UseConsumablesAction(this);
+		break;
 	case STATUS: // a click on the status bar ==> no action
 		return;
 	}

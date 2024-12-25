@@ -17,7 +17,7 @@ class Player
 
 	// owned equipments
 	// carried consumables
-	WorkshopItemTypes purchasedItems[2];
+	WorkshopItemTypes *purchasedItems;
 	// carried laser type (default, double laser)
 	string laserType;
 
@@ -25,6 +25,7 @@ class Player
 	bool isHacked;
 	Command *SavedCommand; // array of the commands the playes has chosed
 	int NumOfSavedCommands;
+	Workshop *pWorkshop;
 
 public:
 	Player(Cell *pCell, int playerNum); // Constructor making any needed initializations
@@ -49,6 +50,9 @@ public:
 
 	// Setters
 	void AddItem(WorkshopItemTypes item);
+	WorkshopItemTypes *GetItems() const;
+	void SetWorkshop(Workshop *workshop);
+	Workshop *GetWorkshop() const;
 	void UpgradeLaserType();
 	void SetIsHacked(bool hacked);
 	bool GetIsHacked() const;

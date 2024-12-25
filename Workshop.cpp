@@ -21,6 +21,7 @@ void Workshop::Draw(Output *pOut) const
 
 void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 {
+	pPlayer->SetWorkshop(this);
 	Output *pOut = pGrid->GetOutput();
 	Input *pIn = pGrid->GetInput();
 
@@ -88,6 +89,10 @@ void Workshop::Apply(Grid *pGrid, Player *pPlayer)
 	}
 }
 
+void Workshop::ExecuteItem(Grid *pGrid, Player *pPlayer, WorkshopItemTypes item)
+{
+	workshopItems[item]->Execute(pGrid, pPlayer);
+}
 Workshop::~Workshop()
 {
 	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
