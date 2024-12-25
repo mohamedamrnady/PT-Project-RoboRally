@@ -109,6 +109,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case Use_Consumable:
 		pAct = new UseConsumablesAction(this);
 		break;
+	case New_Game:
+		delete pGrid;
+		pOut = new Output();
+		pIn = pOut->CreateInput();
+		pGrid = new Grid(pIn, pOut);
 	case STATUS: // a click on the status bar ==> no action
 		return;
 	}
