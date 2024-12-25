@@ -50,8 +50,8 @@ enum ActionType // The actions supported (add more as needed)
 enum Direction // Directions of the game
 {
 	UP,
-	DOWN,
 	RIGHT,
+	DOWN,
 	LEFT
 };
 

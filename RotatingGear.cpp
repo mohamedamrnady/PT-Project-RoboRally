@@ -20,36 +20,13 @@ void RotatingGear::Apply(Grid *pGrid, Player *pPlayer)
 	// 2- Apply the roating gear's effect by rotating the player according to the direction
 	Output *pOut = pGrid->GetOutput();
 	Input *pIn = pGrid->GetInput();
-
+	pPlayer->ClearDrawing(pOut);
 	if (isClockWise)
 	{
 		pOut->PrintMessage("You have reached a rotating gear, you will rotate Clockwise Click to continue ...");
 		pIn->GetCellClicked();
 
-		Direction currentDirection = pPlayer->getDirection();
-
-		if (currentDirection == UP)
-		{
-			pPlayer->setDirection(RIGHT);
-		}
-		else if (currentDirection == RIGHT)
-		{
-			pPlayer->setDirection(DOWN);
-		}
-		else if (currentDirection == DOWN)
-		{
-			pPlayer->setDirection(LEFT);
-		}
-		else if (currentDirection == LEFT)
-		{
-			pPlayer->setDirection(UP);
-		}
-
-		Cell *pCell = pPlayer->GetCell();
-		CellPosition CellPosition = pCell->GetCellPosition();
-
 		pPlayer->setDirection(static_cast<Direction>((pPlayer->getDirection() + 1) % 4));
-		pPlayer->ClearDrawing(pOut);
 		pPlayer->Draw(pOut);
 	}
 	else
@@ -57,31 +34,7 @@ void RotatingGear::Apply(Grid *pGrid, Player *pPlayer)
 		pOut->PrintMessage("You have reached a rotating gear, you will rotate Anti Clockwise Click to continue ...");
 		pIn->GetCellClicked();
 
-		Direction currentDirection = pPlayer->getDirection();
-
-		if (currentDirection == UP)
-		{
-			pPlayer->setDirection(LEFT);
-		}
-		else if (currentDirection == RIGHT)
-		{
-			pPlayer->setDirection(UP);
-		}
-		else if (currentDirection == DOWN)
-		{
-			pPlayer->setDirection(RIGHT);
-		}
-		else if (currentDirection == LEFT)
-		{
-			pPlayer->setDirection(DOWN);
-		}
-
-		Cell *pCell = pPlayer->GetCell();
-		CellPosition CellPosition = pCell->GetCellPosition();
-
-		pPlayer->setDirection(static_cast<Direction>((pPlayer->getDirection() + 3) % 4));
-
-		pPlayer->ClearDrawing(pOut);
+		pPlayer->setDirection(static_cast<Direction>((pPlayer->getDirection() - 1) % 4));
 		pPlayer->Draw(pOut);
 	}
 }
