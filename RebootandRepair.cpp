@@ -10,8 +10,15 @@ void RebootandRepair::ReadActionParameters()
 
 void RebootandRepair::Execute()
 {
-    pPlayer = pManager->GetGrid()->GetCurrentPlayer();
-    pPlayer->SetHealth(10);
+    Grid *pGrid = pManager->GetGrid();
+    Output *pOut = pGrid->GetOutput();
+    Input *pIn = pGrid->GetInput();
+    Player *pPlayer = pGrid->GetCurrentPlayer();
+    pOut->PrintMessage("Reboot and Repair: Click to continue ...");
+    pIn->GetCellClicked();
+    pPlayer->SetHealth(pPlayer->GetHealth() + 2);
+    pOut->ClearStatusBar();
+    pGrid->AdvanceCurrentPlayer();
 }
 
 RebootandRepair::~RebootandRepair()

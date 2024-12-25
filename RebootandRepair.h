@@ -7,8 +7,6 @@
 
 class RebootandRepair : public Action
 {
-	Player *pPlayer;
-
 public:
 	RebootandRepair(ApplicationManager *pApp);
 	virtual void ReadActionParameters(); // Reads action parameters
