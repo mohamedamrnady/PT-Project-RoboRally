@@ -49,7 +49,18 @@ void AddBeltAction::Execute()
 
 	Grid *pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
 
-	bool added = pGrid->AddObjectToCell(pBelt);
+	bool added = false;
+	GameObject *pBeltEnd = new Belt(endPos, endPos);
+	if (pGrid->AddObjectToCell(pBelt))
+	{
+		pBelt->GetEndPosition();
+		if (pGrid->AddObjectToCell(pBeltEnd))
+		{
+			added = true;
+		}
+		else
+			pGrid->RemoveObjectFromCell(startPos);
+	}
 
 	// if the GameObject cannot be added
 	if (!added)

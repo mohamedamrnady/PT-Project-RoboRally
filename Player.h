@@ -3,7 +3,6 @@
 #include "Grid.h"
 #include "Cell.h"
 #include "WorkshopItem.h"
-#include "DEFS.h"
 
 class Player
 {
@@ -67,7 +66,6 @@ public:
 
 	// ====== Game Functions ======
 
-	// void RandomCommandsGeneration();
 	Command *GetSavedCommands();
 
 	void Move(Grid *pGrid, Command moveCommands[]); // Moves the Player with the passed move command

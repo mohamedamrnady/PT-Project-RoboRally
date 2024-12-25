@@ -168,7 +168,6 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 				moveDirection = LEFT;
 				break;
 			}
-			break;
 		}
 		// Get moving steps, ignoring direction
 		if (moveCommands[i] == MOVE_FORWARD_ONE_STEP || moveCommands[i] == MOVE_BACKWARD_ONE_STEP)
@@ -183,7 +182,47 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		{
 			steps = 3;
 		}
+		else if (moveCommands[i] == ROTATE_CLOCKWISE)
+		{
+			steps = 0;
+			switch (currDirection)
+			{
+			case UP:
+				moveDirection = RIGHT;
+				break;
+			case DOWN:
+				moveDirection = LEFT;
+				break;
+			case LEFT:
+				moveDirection = UP;
+				break;
+			case RIGHT:
+				moveDirection = DOWN;
+				break;
+			}
+		}
+		else if (moveCommands[i] == ROTATE_COUNTERCLOCKWISE)
+		{
+			steps = 0;
+			switch (currDirection)
+			{
+			case UP:
+				moveDirection = LEFT;
+				break;
+			case DOWN:
+				moveDirection = RIGHT;
+				break;
+			case LEFT:
+				moveDirection = DOWN;
+				break;
+			case RIGHT:
+				moveDirection = UP;
+				break;
+			}
+		}
 
+		pGrid->GetCurrentPlayer()->ClearDrawing(pGrid->GetOutput());
+		// pGrid->GetCurrentPlayer()->setDirection(moveDirection);
 		currentCellPos.AddCellNum(steps, moveDirection);
 		pGrid->UpdatePlayerCell(this, currentCellPos);
 		GameObject *pObj = pCell->GetGameObject();
@@ -193,7 +232,7 @@ void Player::Move(Grid *pGrid, Command moveCommands[])
 		{
 			return;
 		}
-		pGrid->GetOutput()->PrintMessage("Click anywhere to execute the next command" + to_string(i));
+		pGrid->GetOutput()->PrintMessage("Click anywhere to execute the next command " + to_string(i));
 		pGrid->GetInput()->GetCellClicked();
 	}
 

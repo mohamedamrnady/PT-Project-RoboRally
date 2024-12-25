@@ -203,6 +203,7 @@
     <ClCompile Include="WorkshopItem.cpp" />
     <ClCompile Include="UpgradeLaserItem.cpp" />
     <ClCompile Include="ExtendedMemoryItem.cpp" />
+    <ClCompile Include="ExitAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
@@ -260,6 +261,7 @@
     <ClInclude Include="WorkshopItem.h" />
     <ClInclude Include="UpgradeLaserItem.h" />
     <ClInclude Include="ExtendedMemoryItem.h" />
+    <ClInclude Include="ExitAction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

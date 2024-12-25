@@ -238,6 +238,9 @@
     <ClCompile Include="ExtendedMemoryItem.cpp">
       <Filter>WorkshopItems</Filter>
     </ClCompile>
+    <ClCompile Include="ExitAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -402,6 +405,9 @@
     </ClInclude>
     <ClInclude Include="ExtendedMemoryItem.h">
       <Filter>WorkshopItems</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitAction.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
