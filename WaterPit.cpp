@@ -26,6 +26,29 @@ void WaterPit::Apply(Grid *pGrid, Player *pPlayer)
 	pGrid->UpdateInterface();
 }
 
+void WaterPit::Save(ofstream &OutFile, int t)
+{
+	if (t == water_pit)
+		OutFile << position.GetCellNum() << endl;
+}
+
+int WaterPit::GetObjType()
+{
+	return water_pit;
+}
+
+void WaterPit::Load(ifstream &Infile)
+{
+	int cellnum;
+	Infile >> cellnum;
+	position.SetCellNum(cellnum);
+}
+
+GameObject *WaterPit::clone() const
+{
+	return new WaterPit(*this);
+}
+
 WaterPit::~WaterPit()
 {
 }

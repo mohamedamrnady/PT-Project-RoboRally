@@ -178,3 +178,8 @@ void CellPosition::AddCellNum(int addedNum, Direction direction)
 	}
 }
 // done
+
+void CellPosition::SetCellNum(int cellNum)
+{
+	(*this) = GetCellPositionFromNum(cellNum);
+}

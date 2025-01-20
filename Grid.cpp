@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Belt.h"
 #include "Player.h"
+#include <iostream>
 
 Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn, pOut
 {
@@ -25,6 +26,14 @@ Grid::Grid(Input *pIn, Output *pOut) : pIn(pIn), pOut(pOut) // Initializing pIn,
 
 	// Initialize currPlayerNumber with 0 (first player)
 	currPlayerNumber = 0; // start with the first player
+
+	numAntennas = 0;
+	numWaterPits = 0;
+	numFlag = 0;
+	numDangerZones = 0;
+	numBelts = 0;
+	numWorkshops = 0;
+	numRotatingGears = 0;
 
 	// Initialize Clipboard with NULL
 	Clipboard = NULL;
@@ -93,7 +102,7 @@ Output *Grid::GetOutput() const
 
 void Grid::SetClipboard(GameObject *gameObject) // to be used in copy/cut
 {
-	// you may update slightly in implementation if you want (but without breaking responsibilities)
+	delete Clipboard;
 	Clipboard = gameObject;
 }
 
@@ -132,6 +141,16 @@ int Grid::GetNumAntennas() const
 	return numAntennas;
 }
 
+int Grid::GetnumWaterPits() const
+{
+	return numWaterPits;
+}
+
+void Grid::SetnumWaterPits(int numWaterPits)
+{
+	this->numWaterPits = numWaterPits;
+}
+
 void Grid::SetNumFlag(int numFlag)
 {
 	this->numFlag = numFlag;
@@ -140,6 +159,46 @@ void Grid::SetNumFlag(int numFlag)
 int Grid::GetNumFlag() const
 {
 	return numFlag;
+}
+
+void Grid::SetnumDangerZones(int numDangerZones)
+{
+	this->numDangerZones = numDangerZones;
+}
+
+int Grid::GetnumDangerZones() const
+{
+	return numDangerZones;
+}
+
+void Grid::SetnumBelts(int numBelts)
+{
+	this->numBelts = numBelts;
+}
+
+int Grid::GetnumBelts() const
+{
+	return numBelts;
+}
+
+void Grid::SetnumWorkshops(int numWorkshops)
+{
+	this->numWorkshops = numWorkshops;
+}
+
+int Grid::GetnumWorkshops() const
+{
+	return numWorkshops;
+}
+
+void Grid::SetnumRotatingGears(int numRotatingGears)
+{
+	this->numRotatingGears = numRotatingGears;
+}
+
+int Grid::GetnumRotatingGears() const
+{
+	return numRotatingGears;
 }
 
 // ========= Other Getters =========
@@ -226,6 +285,96 @@ void Grid::PrintErrorMessage(string msg)
 	int x, y;
 	pIn->GetPointClicked(x, y);
 	pOut->ClearStatusBar();
+}
+
+void Grid::DeleteGameObj(const CellPosition &selected_cell)
+{
+
+	for (int i = NumVerticalCells - 1; i >= 0; i--) // bottom up
+	{
+		for (int j = 0; j < NumHorizontalCells; j++) // left to right
+		{
+			if (CellList[i][j] != nullptr)
+			{
+				if ((CellList[i][j]->GetCellPosition()).GetCellNum() == selected_cell.GetCellNum())
+				{
+					int type = CellList[i][j]->DeleteGameObj(selected_cell);
+					switch (type)
+					{
+					case flag:
+						if (numFlag > 0)
+							numFlag--;
+						break;
+					case water_pit:
+						if (numWaterPits > 0)
+							numWaterPits--;
+						break;
+					case danger_zone:
+						if (numDangerZones > 0)
+							numDangerZones--;
+						break;
+					case belt:
+						if (numBelts > 0)
+							numBelts--;
+						break;
+					case workshop:
+						if (numWorkshops > 0)
+							numWorkshops--;
+						break;
+					case antenna:
+						if (numAntennas > 0)
+							numAntennas--;
+						break;
+					case rotating_gear:
+						if (numRotatingGears > 0)
+							numRotatingGears--;
+						break;
+					}
+					return;
+				}
+			}
+		}
+	}
+}
+
+void Grid::SaveAll(ofstream &outfile, int type)
+{ // saves all objects of a certain type
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if (CellList[i][j] != nullptr)
+			{
+				GameObject *gobj = CellList[i][j]->GetGameObject();
+				if (gobj != nullptr)
+				{
+					if (gobj->GetObjType() == type) // to save all objects of a certain type
+						CellList[i][j]->GetGameObject()->Save(outfile, type);
+				}
+			}
+		}
+	}
+}
+
+GameObject *Grid::GetGameObjectfromCellPosition(const CellPosition &selected_cell)
+{
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+	{
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			if ((CellList[i][j]->GetCellPosition()).GetCellNum() == selected_cell.GetCellNum())
+			{
+				return CellList[i][j]->GetGameObject();
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+void Grid::DeallocateClipboard()
+{
+	delete Clipboard;
 }
 
 Grid::~Grid()

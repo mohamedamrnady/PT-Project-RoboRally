@@ -35,6 +35,8 @@ void AddWorkshopAction::Execute()
     {
         pOut->PrintMessage("Error: Cell already has an object!");
     }
+    else
+        pGrid->SetnumWorkshops((pGrid->GetnumWorkshops()) + 1);
 }
 
 AddWorkshopAction::~AddWorkshopAction()

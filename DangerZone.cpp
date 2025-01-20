@@ -25,7 +25,28 @@ void DangerZone::Apply(Grid *pGrid, Player *pPlayer)
 	// 3- Update the players info which is displayed (check Grid class and decide which function to use)
 	pGrid->UpdateInterface();
 }
+void DangerZone::Save(ofstream &OutFile, int t)
+{
+	if (t == danger_zone)
+		OutFile << position.GetCellNum() << endl;
+}
 
+int DangerZone::GetObjType()
+{
+	return danger_zone;
+}
+
+void DangerZone::Load(ifstream &Infile)
+{
+	int cellnum;
+	Infile >> cellnum;
+	position.SetCellNum(cellnum);
+}
+
+GameObject *DangerZone::clone() const
+{
+	return new DangerZone(*this);
+}
 DangerZone::~DangerZone()
 {
 }

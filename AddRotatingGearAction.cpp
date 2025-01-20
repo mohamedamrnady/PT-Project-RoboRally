@@ -55,6 +55,7 @@ void AddRotatingGearAction::Execute()
 	if (added)
 	{
 		pOut->PrintMessage("Rotating Gear added successfully");
+		pGrid->SetnumRotatingGears((pGrid->GetnumRotatingGears()) + 1);
 	}
 	else
 	{

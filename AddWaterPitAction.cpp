@@ -41,6 +41,8 @@ void AddWaterPitAction::Execute()
 	{
 		pOut->PrintMessage("Error: Cell already has an object!");
 	}
+	else
+		pGrid->SetnumWaterPits((pGrid->GetnumWaterPits()) + 1);
 }
 
 AddWaterPitAction::~AddWaterPitAction()

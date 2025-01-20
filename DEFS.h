@@ -79,4 +79,17 @@ enum WorkshopItemTypes
 
 	WORKSHOP_ITEMS_COUNT,
 };
+
+// either flag, water pit, danger zone, belt, workshop, antenna or rotating gear
+enum GameObj
+{
+	flag,
+	water_pit,
+	danger_zone,
+	belt,
+	belt_end,
+	workshop,
+	antenna,
+	rotating_gear,
+};
 #endif

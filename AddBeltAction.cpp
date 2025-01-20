@@ -1,5 +1,4 @@
 #include "AddBeltAction.h"
-#include "BeltEnd.h"
 
 AddBeltAction::AddBeltAction(ApplicationManager *pApp) : Action(pApp)
 {

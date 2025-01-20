@@ -43,6 +43,22 @@ GameObject *Cell::GetGameObject() const
 	return pGameObject;
 }
 
+int Cell::DeleteGameObj(const CellPosition &cell)
+{
+	if (position.GetCellNum() == cell.GetCellNum())
+	{
+		if (pGameObject != nullptr)
+		{
+			int type = pGameObject->GetObjType();
+			delete pGameObject;
+			pGameObject = nullptr;
+			return type;
+		}
+	}
+	else
+		return -1;
+}
+
 Belt *Cell::HasBelt() const
 {
 	return dynamic_cast<Belt *>(pGameObject);
@@ -91,7 +107,6 @@ WaterPit *Cell::HasWaterPit() const
 DangerZone *Cell::HasDangerZone() const
 {
 	/// TODO: Implement the following function like HasBelt() function
-
 	return dynamic_cast<DangerZone *>(pGameObject);
 }
 

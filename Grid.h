@@ -25,7 +25,12 @@ class Grid
 	int currPlayerNumber;				// The player number that has the turn to play
 										// currPlayerNumber is: from 0 to MaxPlayerCount - 1
 	int numAntennas;					// Number of antennas in the grid
-	int numFlag;						// Number of antennas in the grid
+	int numWaterPits;
+	int numFlag;
+	int numDangerZones;
+	int numBelts;
+	int numWorkshops;
+	int numRotatingGears;
 
 	GameObject *Clipboard; // This is used in copy/cut/paste game objects (should be set in copy/cut and got in paste)
 
@@ -64,10 +69,27 @@ public:
 	/// TODO: add any needed setter/getter "EXCEPT" ANY setters or getters of "CellList" or "PlayerList" (Forbidden for class Responsibilities)
 	void SetCurrentPlayer(int playerNum); // A setter for the currPlayerNumber
 										  // It sets the current player number to the passed value
-	void SetNumAntennas(int numAntennas);
+
 	int GetNumAntennas() const;
-	void SetNumFlag(int numFlag);
+	void SetNumAntennas(int numAntennas);
+
 	int GetNumFlag() const;
+	void SetNumFlag(int numFlag);
+
+	int GetnumWaterPits() const;
+	void SetnumWaterPits(int numwp);
+
+	int GetnumDangerZones() const;
+	void SetnumDangerZones(int numdg);
+
+	int GetnumBelts() const;
+	void SetnumBelts(int numbelts);
+
+	int GetnumWorkshops() const;
+	void SetnumWorkshops(int numws);
+
+	int GetnumRotatingGears() const;
+	void SetnumRotatingGears(int numrg);
 
 	// ========= Other Getters =========
 
@@ -84,6 +106,12 @@ public:
 
 	void PrintErrorMessage(string msg); // Prints an error message on statusbar, Waits for mouse click then clears statusbar
 										// We added this function once here because it is used many times by other classes
+
+	GameObject *GetGameObjectfromCellPosition(const CellPosition &selected_cell);
+
+	void DeleteGameObj(const CellPosition &selected_cell);
+	void DeallocateClipboard();
+	void SaveAll(ofstream &outfile, int type);
 
 	~Grid(); // A destructor for any needed deallcations
 };

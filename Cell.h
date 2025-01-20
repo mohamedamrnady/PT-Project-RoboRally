@@ -33,6 +33,9 @@ public:
 	bool SetGameObject(GameObject *pGObj); // A setter for pGameObject of the cell
 										   // It does NOT add the object and returns false if the cell already contains one
 	GameObject *GetGameObject() const;	   // A getter for pGameObject of the cell
+
+	int DeleteGameObj(const CellPosition &selected_cell); // returns type of object deleted
+
 	// TODO implement similar functions to check if a cell has a specific gameobject if needed
 	Belt *HasBelt() const; // Checks if pGameObject is a Belt Then returns true if it is a belt or returns NULL if not belt
 	Flag *HasFlag() const; // Checks if pGameObject is a Flag Then returns true if it is a flag or returns NULL if not flag

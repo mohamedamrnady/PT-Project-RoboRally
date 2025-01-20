@@ -44,6 +44,41 @@ bool RotatingGear::GetisClockWise() const
 	return isClockWise;
 }
 
+void RotatingGear::Save(ofstream &OutFile, int t)
+{
+	if (t == rotating_gear)
+	{
+		OutFile << position.GetCellNum() << " ";
+		if (isClockWise)
+			OutFile << 1 << endl;
+		else
+			OutFile << 0 << endl;
+	}
+}
+
+int RotatingGear::GetObjType()
+{
+
+	return rotating_gear;
+}
+
+void RotatingGear::Load(ifstream &Infile)
+{
+	int cellnum, clockwise;
+	Infile >> cellnum;
+	position.SetCellNum(cellnum);
+	Infile >> clockwise;
+	if (clockwise == 1)
+		isClockWise = true;
+	else
+		isClockWise = false;
+}
+
+GameObject *RotatingGear::clone() const
+{
+	return new RotatingGear(*this);
+}
+
 RotatingGear::~RotatingGear()
 {
 }

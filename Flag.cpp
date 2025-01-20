@@ -22,6 +22,29 @@ void Flag::Apply(Grid *pGrid, Player *pPlayer)
 	//    Review the "pGrid" functions and decide which function can be used for that
 	pGrid->SetEndGame(true);
 }
+void Flag::Save(ofstream &OutFile, int t)
+{
+	if (t == flag)
+	{
+		OutFile << position.GetCellNum() << endl;
+	}
+}
+
+int Flag::GetObjType()
+{
+	return flag;
+}
+
+void Flag::Load(ifstream &Infile)
+{
+	int cellnum;
+	Infile >> cellnum;
+	position.SetCellNum(cellnum);
+}
+GameObject *Flag::clone() const
+{
+	return new Flag(*this);
+}
 
 Flag::~Flag()
 {

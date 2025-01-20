@@ -65,6 +65,31 @@ void Antenna::Apply(Grid *pGrid, Player *pPlayer)
 	pGrid->PrintErrorMessage(message);
 }
 
+void Antenna::Save(ofstream &OutFile, int t)
+{
+	if (t == antenna)
+	{
+		int cellnum = position.GetCellNum();
+		OutFile << cellnum << endl;
+	}
+}
+
+int Antenna::GetObjType()
+{
+	return antenna;
+}
+
+void Antenna::Load(ifstream &Infile)
+{
+	int cellnum;
+	Infile >> cellnum;
+	position.SetCellNum(cellnum);
+}
+GameObject *Antenna::clone() const
+{
+	return new Antenna(*this);
+}
+
 Antenna::~Antenna()
 {
 }

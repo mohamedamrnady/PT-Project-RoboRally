@@ -63,4 +63,5 @@ public:
 		Note: Make sure to make any necessary validations
 	*/
 	void AddCellNum(int addedNum, Direction direction);
+	void SetCellNum(int cellNum);
 };

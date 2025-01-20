@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 #include "GameObject.h"
 #include "Player.h"
 
@@ -11,4 +12,10 @@ public:
 	virtual void Apply(Grid *pGrid, Player *pPlayer);				// Applys the effect of the flag
 	bool GetisClockWise() const;									// Getter for the direction
 	virtual ~RotatingGear();
+
+	virtual int GetObjType();
+	virtual void Load(ifstream &Infile);
+	virtual GameObject *clone() const;
+
+	virtual void Save(ofstream &OutFile, int t); // cell postion
 };

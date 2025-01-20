@@ -41,6 +41,8 @@ void AddDangerZoneAction::Execute()
 	{
 		pOut->PrintMessage("Error: Cell already has an object!");
 	}
+	else
+		pGrid->SetnumDangerZones((pGrid->GetnumDangerZones()) + 1);
 }
 
 AddDangerZoneAction::~AddDangerZoneAction()

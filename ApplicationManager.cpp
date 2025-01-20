@@ -7,10 +7,16 @@
 #include "AddWaterPitAction.h"
 #include "AddWorkshopAction.h"
 #include "AddAntennaAction.h"
+#include "Delete_Action.h"
+#include "SaveAction.h"
+#include "LoadAction.h"
+#include "CopyAction.h"
+#include "CutAction.h"
+#include "PasteAction.h"
 #include "SelectCommandsAction.h"
 #include "ExecuteCommandsAction.h"
-#include "CreatePlayModeToolBarAction.h"
-#include "CreateDesignModeToolBarAction.h"
+#include "CreatePlayModeToolBarAction.h"   // Include the correct header file for CreatePlayMode
+#include "CreateDesignModeToolBarAction.h" // Include the correct header file for CreateDesignMode
 #include "UseConsumablesAction.h"
 #include "RebootandRepair.h"
 
@@ -68,7 +74,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case Add_Belt:
 		pAct = new AddBeltAction(this);
 		break;
-
 	case Add_Rotating_Gear:
 		// create an object of AddRotatingGearAction here
 		pAct = new AddRotatingGearAction(this);
@@ -77,7 +82,25 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// create an object of AddFlagAction here
 		pAct = new AddFlagAction(this);
 		break;
-
+	case Delete_Game_Object:
+		pAct = new Delete_Action(this);
+		break;
+		// SaveAction
+	case Save_Grid:
+		pAct = new SaveAction(this);
+		break;
+	case Load_OR_Open_Grid:
+		pAct = new LoadAction(this);
+		break;
+	case Copy_Game_Object:
+		pAct = new CopyAction(this);
+		break;
+	case Cut_Game_Object:
+		pAct = new CutAction(this);
+		break;
+	case Paste_Game_Object:
+		pAct = new PasteAction(this);
+		break;
 	case EXIT:
 		return;
 	case TO_PLAY_MODE:								  // TODO:

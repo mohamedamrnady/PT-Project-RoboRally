@@ -2,7 +2,7 @@
 
 #include "GameObject.h"
 
-Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(10), playerNum(playerNum), currDirection(RIGHT), NumOfSavedCommands(5)
+Player::Player(Cell *pCell, int playerNum) : stepCount(0), health(9), playerNum(playerNum), currDirection(RIGHT), NumOfSavedCommands(5)
 {
 	this->pCell = pCell;
 	// Make all the needed initialization or validations
@@ -250,6 +250,7 @@ void Player::AppendPlayerInfo(string &playersInfo) const
 {
 	// TODO: Modify the Info as needed
 	playersInfo += "P" + to_string(playerNum) + "(";
+	playersInfo += to_string(pCell->GetCellPosition().GetCellNum()) + ", ";
 	switch (currDirection)
 	{
 	case UP:

@@ -241,7 +241,25 @@
     <ClCompile Include="ExtendedMemoryItem.cpp">
       <Filter>WorkshopItems</Filter>
     </ClCompile>
+    <ClCompile Include="SaveAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Delete_Action.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CopyAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="PasteAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
     <ClCompile Include="UseConsumablesAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="CutAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -413,6 +431,24 @@
       <Filter>WorkshopItems</Filter>
     </ClInclude>
     <ClInclude Include="UseConsumablesAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Delete_Action.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CopyAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="PasteAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CutAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

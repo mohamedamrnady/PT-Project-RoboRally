@@ -93,6 +93,30 @@ void Workshop::ExecuteItem(Grid *pGrid, Player *pPlayer, WorkshopItemTypes item)
 {
 	workshopItems[item]->Execute(pGrid, pPlayer);
 }
+
+void Workshop::Load(ifstream &Infile)
+{
+	int cellnum;
+	Infile >> cellnum;
+	position.SetCellNum(cellnum);
+}
+
+int Workshop::GetObjType()
+{
+	return workshop;
+}
+
+void Workshop::Save(ofstream &OutFile, int t)
+{
+	if (t == workshop)
+		OutFile << position.GetCellNum() << endl;
+}
+
+GameObject *Workshop::clone() const
+{
+	return new Workshop(*this);
+}
+
 Workshop::~Workshop()
 {
 	for (int i = 0; i < WORKSHOP_ITEMS_COUNT; i++)
